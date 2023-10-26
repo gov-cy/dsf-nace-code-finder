@@ -1,0 +1,15 @@
+{
+  "name": "dsf-nace-code-finder",
+  "version": "1.0.0",
+  "description": "An easy tool to search for NACE codes",
+  "main": "index.html",
+  "keywords": [],
+  "author": "DMRID - DSF Team",
+  "license": "MIT",
+  "scripts": {
+      "start": "http-server -c-1 -p 3000 -o docs/"
+  },
+  "devDependencies": {
+      "http-server": "^13.0.2"
+  }
+}

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="el">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Social -->
+  <meta property="og:description" content="An easy tool to search for NACE codes ">
+  <meta property="og:title" content="NACE code finder - gov.cy">
+  <meta property="og:url" content="https://gov-cy.github.io/dsf-nace-code-finder/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://gov-cy.github.io/dsf-nace-code-finder/img/icons-512.png">
+  <meta property="og:site_name" content="gov.cy">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://gov-cy.github.io/dsf-nace-code-finder/">
+  <meta property="twitter:title" content="NACE code finder - gov.cy">
+  <meta property="twitter:description" content="An easy tool to search for NACE codes ">
+  <meta property="twitter:image" content="https://gov-cy.github.io/dsf-nace-code-finder/img/icons-512.png">
+
+  <!-- Theme -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#31576F">
+  <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/apple-touch-icon-120x120-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" href="img/apple-touch-icon-57x57-precomposed.png">
+
+  <title>NACE code finder - gov.cy</title>
+  <meta name="description" content="An easy tool to search for NACE codes ">
+
+  <!-- CSS -->
+  <link href="css/main.min.css" rel="stylesheet">
+
+  <style>
+    .paginate_button {
+      padding-right: 10px;
+      padding-left: 10px;
+      cursor: pointer;
+    }
+
+    .paginate_button.disabled,
+    .paginate_button.current {
+      color: #272525;
+      text-decoration: none;
+    }
+
+    /*Search input to be shown like gov.cy*/
+    .dataTables_filter label {
+      color: #000000;
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    [type=search] {
+      border: 3px solid #272525;
+      height: 44px;
+      padding: 5px;
+      margin-top: 0.5rem;
+      width: 14.16rem
+    }
+
+    [type=search]:focus {
+      box-shadow: 0 0 0 4pt #ffdd00;
+      outline: none;
+    }
+
+    /*Hack for mobile table headers to be shown*/
+    @media(max-width: 767.98px) {
+      .govcy-table thead {
+        display: table-header-group !important
+      }
+
+      .govcy-table>:not(:first-child) {
+        border-top: 2px solid currentColor
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <a href="#mainContainer" class="govcy-skip-link">Skip to main content</a>
+  <!--bodyStart-->
+  <section class="govcy-container-fluid" id="bodyStartContainer"> </section>
+  <!--Header-->
+  <section class="govcy-container-fluid govcy-p-0 govcy-m-0 govcy-position-relative govcy-d-print-none">
+    <div class="govcy-container" id="headerContainer">
+      <div class="row">
+        <header class="govcy-header govcy-bg-primary govcy-text-white govcy-bg-primary-right">
+          <a href="./" class="govcy-logo"> <img></a>
+          <span class="govcy-service-name">NACE code finder</span>
+        </header>
+      </div>
+    </div>
+  </section>
+  <!--beforeMain-->
+  <section class="govcy-container govcy-mb-4" id="beforeMainContainer">
+  </section>
+  <!--main-->
+  <main class="govcy-container" id="mainContainer">
+    <div class="row">
+      <article class="govcy-col-12">
+        <h1>NACE Code finder</h1>
+        <p>Πληκτρολογήστε στο πεδίο "Αναζήτηση" πιο κάτω για να βρείτε τον αντίστοιχο κωδικό NACE. Μπορείτε να κάνετε αναζήτηση είτε με κωδικό είτε με περιγραφή. Τα αποτελέσματα θα φιλτράρονται καθώς πληκτρολογείτε.</p>
+        <p>Type in the "Search" field below to find the corresponding NACE code. You can search either by code or description. The results will be filtered as you type.</p>
+        <table id="NICETable" class="govcy-table">
+          <thead>
+            <tr class="govcy-br-input">
+              <th>Κωδικός / Code</th>
+              <th>Περιγραφή / Description</th>
+            </tr>
+          </thead>
+          <tbody id="NACEBody">
+          </tbody>
+        </table>
+
+      </article>
+    </div>
+  </main>
+  <!-- Footer -->
+  <section
+    class="govcy-container-fluid govcy-br-top-8 govcy-br-top-primary govcy-p-3 govcy-bg-light govcy-d-print-none">
+    <div class="govcy-container" id="footerContainer">
+      <div class="row">
+        <footer class="govcy-footer">
+          <span class="govcy-d-inline-block govcy-valign-top govcy-pb-2"><img alt="govcy-logo"></span>
+          <ul class="govcy-d-inline-block  govcy-m-0 govcy-pl-3 govcy-efs-medium">
+            <li><a href="privacy.html">Privacy statement</a></li>
+            <li><a href="cookie.html">Cookie policy</a></li>
+            <li><a href="accessibility.html">Accessibility statement</a></li>
+            <li class="govcy-d-block govcy-text-dark">© Republic of Cyprus, 2022</li>
+          </ul>
+        </footer>
+      </div>
+    </div>
+  </section>
+  <!--bodyEnd-->
+  <section class="govcy-container-fluid" id="bodyEndContainer"> </section>
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+  <script src="js/mustache.min.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // $(document).ready(function () {
+    //   $('#NICETable').DataTable({
+    //     responsive: true,
+    //     fixedHeader: true,
+    //     info: false,
+    //     ordering: false,
+    //     lengthChange: false,
+    //     // paging: false,
+    //     language: {
+    //       "search": "Έρευνα / Search",
+    //       "zeroRecords": "Δεν βρέθηκαν αποτελέσματα / No matching records found",
+    //     },
+    //     "pageLength": 5
+    //   });
+    // });
+
+  </script>
+</body>
+
+</html>
