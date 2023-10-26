@@ -1,6 +1,6 @@
 {
   "name": "dsf-nace-code-finder",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An easy tool to search for NACE codes",
   "main": "index.html",
   "keywords": [],
