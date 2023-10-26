@@ -3,7 +3,7 @@ name: Tag on Version Change
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - '**'
 jobs:
