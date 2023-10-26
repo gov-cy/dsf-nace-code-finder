@@ -16,7 +16,7 @@ jobs:
       - uses: EndBug/version-check@v2.1.0
         with:
           static-checking: localIsNew
-          file-url: https://raw.githubusercontent.com/gov-cy/dsf-prototype/latest/package.json
+          file-url: https://raw.githubusercontent.com/gov-cy/dsf-nace-code-finder/latest/package.json
         id: version-check
       - name: Check version not decreased
         if: steps.version-check.outputs.changed == 'true' && steps.version-check.outputs.type == 'undefined'
