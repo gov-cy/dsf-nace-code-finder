@@ -48,7 +48,7 @@ $(window).on('load', function () {
  * @returns boolean
  */
 function filterFourDigit(item) {
-    if (item.Code < 10000) {
+    if (item.Code < 100000) {
       return true;
     }
     return false;
