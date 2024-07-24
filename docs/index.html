@@ -39,6 +39,14 @@
   <link href="css/main.min.css" rel="stylesheet">
 
   <style>
+    thead {
+      border-top:0px !important;
+    }
+    a.copy-link, a.copy-link:visited {
+      color: #1d70b8;
+    }
+
+    /*Paginate links*/
     .paginate_button {
       padding-right: 10px;
       padding-left: 10px;
@@ -48,6 +56,31 @@
     .paginate_button.disabled,
     .paginate_button.current {
       color: #272525;
+      text-decoration: none;
+    }
+
+    /*Paginate buttons*/
+    button.paginate_button {
+      padding-right: 10px;
+      padding-left: 10px;
+      cursor: pointer;
+      color: #1d70b8;    
+      text-decoration: underline;
+      border:0px;
+      background-color: #fff;
+    }
+
+    button.paginate_button.disabled,
+    button.paginate_button.current {
+      color: #272525;
+      text-decoration: none;
+    }
+
+    button.paginate_button:focus {
+      background-color: #fd0;
+      border-bottom: 3px solid #272525;
+      color: #272525 !important;
+      outline: none;
       text-decoration: none;
     }
 
@@ -67,7 +100,7 @@
       width: 14.16rem
     }
 
-    [type=search]:focus {
+    [type=search]:focus, .dsf-button:focus {
       box-shadow: 0 0 0 4pt #ffdd00;
       outline: none;
     }
@@ -109,19 +142,49 @@
     <div class="row">
       <article class="govcy-col-12">
         <h1>NACE Code finder</h1>
-        <p>Πληκτρολογήστε στο πεδίο "Αναζήτηση" πιο κάτω για να βρείτε τον αντίστοιχο κωδικό NACE. Μπορείτε να κάνετε αναζήτηση είτε με κωδικό είτε με περιγραφή. Τα αποτελέσματα θα φιλτράρονται καθώς πληκτρολογείτε.</p>
+        <p>Πληκτρολογήστε στο πεδίο "Search" πιο κάτω για να βρείτε τον αντίστοιχο κωδικό NACE. Μπορείτε να κάνετε αναζήτηση είτε με κωδικό είτε με περιγραφή. Τα αποτελέσματα θα φιλτράρονται καθώς πληκτρολογείτε.</p>
         <p>Type in the "Search" field below to find the corresponding NACE code. You can search either by code or description. The results will be filtered as you type.</p>
         <table id="NICETable" class="govcy-table">
+          <caption class='govcy-visually-hidden-error'>
+            Move through the table to go through the Nace code results. 
+          </caption>
           <thead>
             <tr class="govcy-br-input">
-              <th>Κωδικός / Code</th>
-              <th>Περιγραφή / Description</th>
+              <th>Code</th>
+              <th>Description</th>
             </tr>
           </thead>
           <tbody id="NACEBody">
           </tbody>
         </table>
-
+        <!-- Modal -->
+      <div class="modal fade" id="copyModal" tabindex="-1" aria-labelledby="copyModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="copyModalLabel">Value copied</h5>
+              <button type="button" class="btn-close dsf-button close-modal" aria-label="Close"></button>
+            </div>
+            <div id="copyModalBody" class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="govcy-btn-secondary close-modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Toast -->
+      <div class="position-fixed bottom-0 start-0 p-3" style="z-index: 11">
+        <div id="liveToast" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="d-flex">
+            <div id="toast-body" class="toast-body">
+            ....
+           </div>
+            <button type="button" class="close-toast btn-close me-2 m-auto" aria-label="Close"></button>
+          </div>
+        </div>
+      </div>
       </article>
     </div>
   </main>
